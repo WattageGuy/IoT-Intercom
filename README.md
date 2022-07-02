@@ -58,3 +58,93 @@ For thoose of you that want to use something else or design a PCB here is the sc
 Refering to the bread board image you can connect the component in which order you want. But I would recommend connecting LED first, and even connecting a battery source to understand how LED, current, and resistors are working. If you are using another LED and dont feel confident about reading resistor cheet you can use [this](https://circuitdigest.com/calculators/led-resistor-calculator) website.
 
 Now I recommend connecting both buttons accordingly to the bread board image. The resistor that is being used acts as a pull-down resistor which garantes correct value from button.
+
+The last compontent on the bread board is the buzzer that is connected with PWM and ground. PWM is a pulse-width modulation that makes it able to make diffrent sounds from the buzzer.
+
+Latsley you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I/O Expander for I2C Bus soldered on you only need to connect the SDA, SCL, ground and VCC (live 5v<).
+
+## Platorm
+For this project both a local and cloud soultion has been applied. This IoT-Intercom will work without the cloud platform but most have the local Node-RED solution. Node-RED is handeling all communication to and from the deivce while the cloud save all questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
+
+Node-RED was choosen to make the device not cloud dependent so that communication will be avalibel localy on the network. But Node-RED does not come with any database or such to store data and thats why Ubidots was choosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST Api that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
+
+## The code
+Following describes core funcinalities in the micropython code. But before we star some libraries is needed. All this is avalible for download in this github reprositorys lib folder in root, so make sure you upload them to your development board as well.
+
+### WiFi connection
+In order for the deivce to work properlly some kind of network solution is required and in this project WiFi has been choosed. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
+Code below connects to WiFi with provided credentials and applies this connection to the device.
+
+```
+from network import WLAN
+    import time
+    import pycom
+    import machine
+    pycom.wifi_mode_on_boot(WLAN.STA)   # choose station mode on boot
+    wlan = WLAN() # get current object, without changing the mode
+    # Set STA on soft rest
+    if machine.reset_cause() != machine.SOFT_RESET:
+        wlan.init(mode=WLAN.STA)        # Put modem on Station mode
+    if not wlan.isconnected():          # Check if already connected
+        print("Connecting to WiFi...")
+        LCD.puts("Connecting to") # Shows connection on LCD
+        LCD.puts("WiFi...", 0, 1)
+        # Connect with your WiFi Credential
+        wlan.connect('Your WiFi SSID', auth=(WLAN.WPA2, 'Your secret WiFi password'))
+        # Check if it is connected otherwise wait
+        while not wlan.isconnected():
+            pass
+```
+When all the above is successfully executed and the WiFi has been establised this will
+enform the user of the IoT-Intercom and later turn off the screen to save power (this code is not shown in code snippet above)
+
+### MQTT
+When the device has established a working WiFi connection and the screen is turned off its constently checking for a MQTT topic. MQTT is pub-sub communication which means that some publishers can publish data to a sertent topic that is handled by a MQTT broker that later can be seen by all subscribers. This IoT-Intercom will akt as booth subsriber and publisher. Firstly it acts as a subsriber to check for a message to the deivce which is being sent from Node-RED. To choose that topic to look for this is set with parameters below. In this project a topic called notification will be used.
+
+```
+# MQTT parameters
+CLIENT_NAME = 'notification'
+BROKER_ADDR = '172.20.10.2'
+mqttc = MQTTClient(CLIENT_NAME, BROKER_ADDR, keepalive=2000)
+mqttc.connect()
+
+notification = b'notification' # MQTT Topic for the notification message
+answer = b'answer' # MQTT Topic for choise - either red/No or blue/Yes
+
+mqttc.set_callback(notification_check) # function that handles MQTT msg
+mqttc.subscribe(notification) # Topic for MQTT subscription
+```
+
+It then uses these paramters in the function ```mqttc.check_msg() # Checks for MQTT msg```. to check for messages in that topic.
+
+And when data in the choosen topic is recognized it will start the callback function which in this case is called _notification_check_. The code inside this function is shown below. And what it does is to decode the message and split it in strings of maximum 16 caracters, this is because the LCD (16x2) only will show 16 caracters per row. This function also makes sure that there is a valid content in the mqtt message (not empty).
+
+```
+def notification_check(topic, msg, third, fourth): #Checks MQTT message
+    notiValue = msg.decode() # Decodes MQTT message
+    n = 16	# Splits every 16 characters
+    split_string = [notiValue[i:i+n] for i in range(0, len(notiValue), n)] # Splitted string to fit LCD 16
+    if notiValue != "":
+        ask_input(split_string, notiValue)
+```
+
+### User input
+When the MQTT function detected valid content its time to show this content on the screen while also making some buzzer noise and lightning the LED. All this is done in the funkction called _ask_input_. But to make this work you will need to ensure that all pins have been sucessfully defined. This can be found almost at the top of the main.py. Here you set the pins for the LED, Buttons I2C etc. The preconfigured paramters is made for a Heltec device so if you are using any other ESP32 based board check that all pins is correct and whould work with the required communication or usecase. You will need SDA, SCL for the I2C communication and buttons only needs GPI while the LED needs GPIO (output). And the buzzer needs PWM support but it is supported by the majoriteey of ESP32 board Pins.
+
+What happends in the code below is that a text string is sent to the LCD containg the message. The first row on the LCD is the string with index 0 and the second row is index 1 that was generated erlier. This make sure that all allaible space on the LCD is used to display the message. But if a question is longer than 16*2 it wont bee able to see all the text on the LCD. Lastley it also alterts Node-RED that the message has arrived to the device.
+
+```
+while printed == False:
+        LCD.on()
+        LCD.backlight(1)
+        LCD.clear()
+        showTextTop = split_string[0] # Show MQTT msg on LCD
+        for i in range(len(split_string)):
+            if i == 0:
+                LCD.puts(split_string[i])
+            if i == 1:
+                LCD.puts(split_string[i], 0, 1)
+        time.sleep_ms(1500)
+        printed = True
+        mqttc.publish( "printed", "Received by device" )
+```
