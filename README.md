@@ -54,3 +54,7 @@ You will end with a bread board looking something like this below:
 
 For thoose of you that want to use something else or design a PCB here is the schematic:
 </br>![Schematic fritzing](fritzing/schematic.png)
+
+Refering to the bread board image you can connect the component in which order you want. But I would recommend connecting LED first, and even connecting a battery source to understand how LED, current, and resistors are working. If you are using another LED and dont feel confident about reading resistor cheet you can use [this](https://circuitdigest.com/calculators/led-resistor-calculator) website.
+
+Now I recommend connecting both buttons accordingly to the bread board image. The resistor that is being used acts as a pull-down resistor which garantes correct value from button.
