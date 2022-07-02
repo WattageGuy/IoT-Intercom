@@ -222,9 +222,7 @@ If you would like to collect all question answers and answertime as whell as gen
 
 ![Ubidots](Ubidots/dashboard.png)
 
-Here is a demo:
-
-<iframe width="100%" height="100%" frameborder="0" src="https://stem.ubidots.com/app/dashboards/public/dashboard/LZ-PLgHjEOeZQa3TXqeL7Tp_d929xqBDxMsQhk7SXw8?embed=true"></iframe>
+Visit [demo](https://stem.ubidots.com/app/dashboards/public/dashboard/LZ-PLgHjEOeZQa3TXqeL7Tp_d929xqBDxMsQhk7SXw8)
 
 ### Setup
 First of all you will have to set up a Ubidots account. Then you should add a blank device. Inside this device you can setup different varibles, create one and copy the ID (as in figure below). This ID and the Ubidots Token (found in API Credentials) is needed in the Node-RED node called "Setup Requests" edit thoose paramters and click deploy the Node-RED flow in the top right corner in the Node-RED enviroment. No you should also see your messages in the Ubidots platform, but you will have to setup your own Ubidots dashboard.
