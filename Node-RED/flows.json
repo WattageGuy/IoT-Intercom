@@ -1,0 +1,557 @@
+[
+    {
+        "id": "9bb1d8e33c572749",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "48d3c26c03fab938",
+        "type": "mqtt-broker",
+        "name": "Server",
+        "broker": "172.20.10.2",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "cfa9b22cbaa23462",
+        "type": "ui_tab",
+        "name": "Intercom",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fc5fd20ec21e937f",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "1df49db4170ed8c3",
+        "type": "ui_group",
+        "name": "Intercom",
+        "tab": "cfa9b22cbaa23462",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "2bb075ccf739b77b",
+        "type": "debug",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3d3227cbc49213b9",
+        "type": "mqtt in",
+        "z": "9bb1d8e33c572749",
+        "name": "Answer IoT",
+        "topic": "answer",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "48d3c26c03fab938",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "2bb075ccf739b77b",
+                "7ac0f05958d78c9e"
+            ]
+        ]
+    },
+    {
+        "id": "4ab463b2030056d3",
+        "type": "ui_text_input",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "label": "Message to device:",
+        "tooltip": "",
+        "group": "1df49db4170ed8c3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 20,
+        "wires": [
+            [
+                "395a1cb1642659c8",
+                "fc480170ea3ea11b"
+            ]
+        ]
+    },
+    {
+        "id": "395a1cb1642659c8",
+        "type": "mqtt out",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "topic": "notification",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "48d3c26c03fab938",
+        "x": 650,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "7ac0f05958d78c9e",
+        "type": "ui_toast",
+        "z": "9bb1d8e33c572749",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fc721079903ed896",
+        "type": "ui_text",
+        "z": "9bb1d8e33c572749",
+        "group": "1df49db4170ed8c3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Latest message:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 560,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "46987b02d161ed7c",
+        "type": "mqtt in",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "topic": "answerValue",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "48d3c26c03fab938",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "279a0116cb9a1b08",
+                "f6253dd0d76a0f2e"
+            ]
+        ]
+    },
+    {
+        "id": "279a0116cb9a1b08",
+        "type": "change",
+        "z": "9bb1d8e33c572749",
+        "name": "global answerValue",
+        "rules": [
+            {
+                "t": "set",
+                "p": "answerValue",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "90633f9e.bc1a58"
+            ]
+        ]
+    },
+    {
+        "id": "c43d834f71a2cd3d",
+        "type": "mqtt in",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "topic": "answerTime",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "48d3c26c03fab938",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 440,
+        "wires": [
+            [
+                "f3380b5114c9e18f",
+                "ba305d3fb43735ed"
+            ]
+        ]
+    },
+    {
+        "id": "f3380b5114c9e18f",
+        "type": "change",
+        "z": "9bb1d8e33c572749",
+        "name": "global answerTime",
+        "rules": [
+            {
+                "t": "set",
+                "p": "answerTime",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6253dd0d76a0f2e",
+        "type": "ui_text",
+        "z": "9bb1d8e33c572749",
+        "group": "1df49db4170ed8c3",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Answer:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 540,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ba305d3fb43735ed",
+        "type": "ui_text",
+        "z": "9bb1d8e33c572749",
+        "group": "1df49db4170ed8c3",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Answer Time (seconds):",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 590,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "90633f9e.bc1a58",
+        "type": "function",
+        "z": "9bb1d8e33c572749",
+        "name": "Setup Request",
+        "func": "var msg;\nvaribel_id = \"found on ubidots\";\nubidots_token = \"found on ubidots\";\nmsg.method = \"POST\";\nmsg.url = \"https://industrial.api.ubidots.com/api/v1.6/variables/\" + varibel_id + \"/values/?token=\" + ubidots_token;\nmsg.payload = {\"value\":global.get(\"answerTime\"),\"context\":{\"question\":global.get(\"question\"),\"answer\":global.get(\"answerValue\")}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 360,
+        "wires": [
+            [
+                "4b95b329.d784c4"
+            ]
+        ]
+    },
+    {
+        "id": "8cf48dc0.84df7",
+        "type": "debug",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1194,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "4b95b329.d784c4",
+        "type": "http request",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1018,
+        "y": 360,
+        "wires": [
+            [
+                "8cf48dc0.84df7"
+            ]
+        ]
+    },
+    {
+        "id": "7c9ee24539a62fa9",
+        "type": "mqtt in",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "topic": "question",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "48d3c26c03fab938",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "fc721079903ed896"
+            ]
+        ]
+    },
+    {
+        "id": "61407b66398c90c0",
+        "type": "inject",
+        "z": "9bb1d8e33c572749",
+        "name": "Test",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 730,
+        "y": 300,
+        "wires": [
+            [
+                "90633f9e.bc1a58"
+            ]
+        ]
+    },
+    {
+        "id": "b34038654b0338b7",
+        "type": "mqtt in",
+        "z": "9bb1d8e33c572749",
+        "name": "Device",
+        "topic": "printed",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "48d3c26c03fab938",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "8c8d54a161a6b518"
+            ]
+        ]
+    },
+    {
+        "id": "8c8d54a161a6b518",
+        "type": "ui_toast",
+        "z": "9bb1d8e33c572749",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 510,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "fc480170ea3ea11b",
+        "type": "change",
+        "z": "9bb1d8e33c572749",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "question",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    }
+]

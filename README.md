@@ -191,3 +191,22 @@ if redButton.value() == 1: # If red button is pressed
                   mqttc.publish( "answerValue", color )
                   mqttc.publish( "answerTime", counterS )
 ```
+
+## Transmitting the data / connectivity
+As told ealier the IoT-Intercom sends all data with MQTT topics. But in order for this to work you will need a MQTT broker, the one used in this project is called mosquitto. This can be installed on mac with homebrew command: ```brew install mosquitto```. On Windows you can download mosquitto [here](https://mosquitto.org/files/binary/win64/mosquitto-2.0.14-install-windows-x64.exe).
+
+On mac add the following at the buttom of the file /opt/homebrew/etc/mosquitto/mosquitto.conf:
+```
+listener 1883
+allow_anonymous true
+```
+
+Then you can start mosquitto on Mac with command: ```mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf```. And on Windows you can use ```net start mosquitto``` when in correct folder path.
+
+## Node-RED
+When MQTT is working you should setup the Node-RED environment. Node-RED makes it easy to import a flow from a JSON. When you have installed Node-RED (reccomended ways is Docker or Home Assistant) you can click the tree lines in the right corner and then choose to import a file. Use the file located in this repo folder called Node-RED. When imported sucessfully it should look something like this:
+
+![Node-RED](Node-RED/overview.png)
+
+You will have to change the server paramters to your mosquitto IP and port (if following this tutorial 1883 is used). Click on any MQTT box to change server settings.
+</br>![Node-RED Server](Node-RED/change-server)
