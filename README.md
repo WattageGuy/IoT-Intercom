@@ -148,3 +148,46 @@ while printed == False:
         printed = True
         mqttc.publish( "printed", "Received by device" )
 ```
+
+The code below is what turns on the LED and make the buzzer sound. Only one syntax is needed to be used to turn on the LED as shown in the first row in code below. The code in the for loop is what plays all buzzer tones, in this case msg is played which is defined eralier in the code, this contains all the frequencys thats going to be sent to the buzzer.
+
+```
+ledPin.value(1) # Turns LED on
+          for i in msg:
+              if i == 0:
+                  ch.duty_cycle(0)
+              else:
+                  tim=PWM(0, frequency=i)  # change frequency for change tone
+                  ch.duty_cycle(0.50)
+              time.sleep(0.150)
+```
+
+When the user clicks on any of the button the buzzer will stop making noises and the LED will turn off. The user will now be presented with two choises (shown on LCD) to make an answer that is going to be sent to Node-RED. Depending on what choise was made some varibel will be defined as seen in code below. This will set the text in the diffrent strings that is going to be sent in the different MQTT topics.
+
+```
+if redButton.value() == 1: # If red button is pressed
+                  answerColor = "No"
+                  shortAnswer = "No"
+                  clicked = True
+              elif blueButton.value() == 1:
+                  answerColor = "Okay/Yes"
+                  shortAnswer = "Yes"
+                  clicked = True
+              if clicked == True:
+                  time.sleep_ms(1500)
+                  LCD.clear()
+                  lcdText = "Answered %s to:" % (shortAnswer)
+                  LCD.puts(lcdText) # Shows choise on LCD
+                  # Shows small version of message
+                  LCD.puts(split_string[0], 0, 1)
+                  lengthOfMessage = str(split_string[0])
+                  if len(lengthOfMessage) > 16:
+                      LCD.puts("...", 13, 13)
+                  color = b"%s" % (answerColor)
+                  answerValue = input + " Answered: " + answerColor
+                  # Sends all MQTT topics to Node-RED
+                  mqttc.publish( answer, answerValue )
+                  mqttc.publish( "question", input )
+                  mqttc.publish( "answerValue", color )
+                  mqttc.publish( "answerTime", counterS )
+```
