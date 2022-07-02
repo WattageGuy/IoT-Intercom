@@ -34,12 +34,19 @@ To bee able to follow this tutorial please gather microcontroller, sensors etc w
 **Total: 700kr**
 
 ## Computer setup
-To be able to program the deivce an IDE is needed, which is a coding enviroment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download Atom here: https://atom.io/. 
+To be able to program the deivce an IDE is needed, which is a coding enviroment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/. 
 
 Before we can program the device we need to flash it with its correct firmware, so connect the device with a micro USB cable to your computer. And if your on Windows you will need to install the driver first [here](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip) One way of doing this is to visit the website: https://nabucasa.github.io/esp-web-flasher/. In the top right corner is a connect button, but before pressing this you will need to set the baud which is 460800 for both the heltec and a generic ESP32. After clicking connect you choose the serial port from the popup. The terminal will let you know if connect, if so please erase the device. Then you choose to upload file in the first offset, [here is the file for heltec](https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true) and [here is the file for ESP32](https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin). When all done and sucessfully flashed we can continue on in Atom.
 
+![ESP Web flasher](https://cdn-learn.adafruit.com/assets/assets/000/110/512/medium640/adafruit_products_Screen_Shot_2022-04-04_at_3.18.26_PM.png?1649112077)
+</br>_Figure 3.1 image that choose ESP Web Flasher webssite_
+
 Before connecting to the device its recomended to turn off Safe-Boot in Atom global settings. After this you will be able to connect to the device from the
-COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like /dev/tty.usbserial-0001. Set this under the device adress (list) option in Atom global settings. Now you should bee able to sucessfully connect to the serial communication in Atoms terminal (click Connect Device).
+COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like ```/dev/tty.usbserial-0001```. Set this under the device adress (list) option in Atom global settings. Now you should bee able to sucessfully connect to the serial communication in Atoms terminal (click Connect Device).
+
+
+
+
 
 
 
