@@ -209,4 +209,22 @@ When MQTT is working you should setup the Node-RED environment. Node-RED makes i
 ![Node-RED](Node-RED/overview.png)
 
 You will have to change the server paramters to your mosquitto IP and port (if following this tutorial 1883 is used). Click on any MQTT box to change server settings.
-</br>![Node-RED Server](Node-RED/change-server)
+</br>![Node-RED Server](Node-RED/change-server.png)
+
+When Node-RED is upp and running and you see a contented status under MQTT nodes everything should work find. Go to http://port:1880/ui/ to access the Node-RED dashboard where you send your message to the MQTT device. It should look like the picture below:
+
+![Node-RED dashboard](Node-RED/dashboard.png)
+
+Try sending some data and it should arrive on the device as well as giving you a notification in the right corner if message is resived successfully. When a answer is made it should also show up as a notification and fill the blank info in the intercom dashboard.
+
+## Ubidots - Cloud solution
+If you would like to collect all question answers and answertime as whell as generating a avarage answer time metric you should consider using the Ubidots solution, this will generate a dashboard as the one shown below.
+
+![Ubidots](Ubidots/dashboard.png)
+
+Here is a demo:
+
+<iframe width="100%" height="100%" frameborder="0" src="https://stem.ubidots.com/app/dashboards/public/dashboard/LZ-PLgHjEOeZQa3TXqeL7Tp_d929xqBDxMsQhk7SXw8?embed=true"></iframe>
+
+### Setup
+First of all you will have to set up a Ubidots account. Then you should add a blank device. Inside this device you can setup different varibles, create one and copy the ID (as in figure below). This ID and the Ubidots Token (found in API Credentials) is needed in the Node-RED node called "Setup Requests" edit thoose paramters and click deploy the Node-RED flow in the top right corner in the Node-RED enviroment. No you should also see your messages in the Ubidots platform, but you will have to setup your own Ubidots dashboard.
