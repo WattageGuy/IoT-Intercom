@@ -227,3 +227,6 @@ Visit [demo](https://stem.ubidots.com/app/dashboards/public/dashboard/LZ-PLgHjEO
 
 ### Setup
 First of all you will have to set up a Ubidots account. Then you should add a blank device. Inside this device you can setup different varibels, create one and copy the ID (as in figure below). This ID and the Ubidots Token (found in API Credentials) is needed in the Node-RED node called "Setup Requests" edit those parameters and click deploy the Node-RED flow in the top right corner in the Node-RED environment. No you should also see your messages in the Ubidots platform, but you will have to setup your own Ubidots dashboard.
+
+![Ubidots ID](Ubidots/id.png)
+</br>_Figure that shows where to find varibel id_
