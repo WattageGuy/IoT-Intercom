@@ -66,6 +66,17 @@ The last component on the bread board is the buzzer that is connected with PWM a
 
 Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I/O Expander for I2C Bus soldered on you only need to connect the SDA, SCL, ground and VCC (live 5v<).
 
+### Power Comsuption
+Down below is a table that shows power consumption. Power consuptions values for Heltec was hard to find so generic ESP32 values is used.
+
+| Component                   | Power Consumption                                                                                                                                                    |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Heltec LoRa v2<br>with WiFi | ~200mA active with Tx (13dBm - 21dBm)<br>(generic ESP32),<br>~100mA active with Rx (generic ESP32),<br>9.6 mA in sleep with USB power,<br>If battery sleep only 11uA |
+| LCD 16x2 I2C                | about 200mA 5v                                                                                                                                                       |
+| Buzzer                      | <10mA, can operate between 3-250v                                                                                                                                    |
+| LED 5mm                     | often 20mA but can<br>take up to 30mA                                                                                                                                |
+| Total (USB Power 5v)                      | ~400mA/0.4W                                                                                                                                                          |
+
 ## Platorm
 For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform but most have the local Node-RED solution. Node-RED is handling all communication to and from the device while the cloud save all questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
 
@@ -236,6 +247,15 @@ First of all you will have to set up a Ubidots account. Then you should add a bl
 
 ## Finalizing the design
 This project was a fun experience. My main goals was to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or similar to communicate with the device and both received and send data. Ive learned both more electrical and circuitary as well as some new communication protocols such as MQTT. Further down is a gif and a video showing the final results.
+
+I would also like to mention that this project and the majority of the cource have been done while in vication. So the project ideas havent had enought time to be fully developed. Some to do is:
+
+* Battery powering
+* Option to set answer options, not only Yes or No
+* 3D printed case
+* Speaker
+
+If you would like to contribute to this project your welcome to make an issue or contact me!
 
 ![Video Preview](video/video-preview.gif)
 </br>_Video that shows the device in action_
