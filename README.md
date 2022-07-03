@@ -232,7 +232,7 @@ You will have to change the server parameters to your mosquitto IP and port (if 
 </br>![Node-RED Server](Node-RED/change-server.png)
 </br>_Figure 7.2 Node-RED node Setup Request for changing server parameters_
 
-When Node-RED is upp and running and you see a contented status under MQTT nodes everything should work find. Go to http://port:1880/ui/ to access the Node-RED dashboard where you send your message to the MQTT device. It should look like the picture below:
+When Node-RED is upp and running and you see a contented status under MQTT nodes everything should work fine. Go to http://port:1880/ui/ to access the Node-RED dashboard where you send your message to the MQTT device. It should look like the picture below:
 
 ![Node-RED dashboard](Node-RED/dashboard.png)
 </br>_Figure 7.3 showing Node-RED dashboard_
@@ -240,10 +240,10 @@ When Node-RED is upp and running and you see a contented status under MQTT nodes
 Try sending some data and it should arrive on the device as well as giving you a notification in the right corner if message is received successfully. When an answer is made it should also show up as a notification and fill the blank info in the intercom dashboard.
 
 ### Conclusion
-WiFi was chosen for the easy to use for new customers if this idea would go into production. WiFi could be found in the almost everybody home in this era. That way the user only need to tell the device they WiFi credentials and the device will be able to communicate around the world. Lore would have needed much more configuration when location is changed. And MQTT have been chosen just because its a lightweight protocol and won't use that much bandwidth in the local network. The header consists of 2 bytes and the payload can be up to 265MB. Ubidots which uses a REST API makes it simple to exchange data because the connection is described in a URL and don't need that much parameters other than a Token and ID. Which will make it easy to distribute this Node-RED configuration without the user being needed to know that much about Node-RED.
+WiFi was chosen for the easy of use for new customers if this idea would go into production. WiFi could be found in almost everybody home in this era. That way the user only need to tell the device what WiFi credentials to use and the device will be able to communicate around the world. LoRa would have needed much more configuration when location is changed. And MQTT have been chosen just because it is a lightweight protocol and will not use that much bandwidth in the local network. The header consists of 2 bytes and the payload can be up to 265MB max. Ubidots which uses a REST API makes it simple to exchange data because the connection is described in a URL and don't need that much parameters other than a Token and ID. Which will make it easy to distribute this Node-RED configuration without the user being needed to know that much about Node-RED.
 
 ## Ubidots - Presenting the data
-If you would like to collect all question, answers and answer time as well as generating a average answer time you should consider using the Ubidots solution, this will generate a dashboard as the one shown below.
+If you would like to collect all questions, answer and answer time as well as generating an average answer time you should consider using the Ubidots solution, this can generate a dashboard as the one shown below.
 
 ![Ubidots](Ubidots/dashboard.png)
 _Figure 8.1 showing Ubidots dashboard_
@@ -257,7 +257,7 @@ First of all you will have to set up a Ubidots account. Then you should add a bl
 </br>_Figure 8.2 that shows where to find varibel id_
 
 ### Automation
-Ubidots have the function of making automation and triggers. At this moment only one automation exists as shown in the image below. The automation sends a congratulations SMS when the user answered or at least stop the message within 10 seconds. This way the user can collect points for being fast to answer.
+Ubidots have the functionality of making automation and triggers. At this moment only one automation exists as shown in the image below. The automation sends a congratulations SMS when the user answered or at least stoped the message within 10 seconds. This way the user can collect points for being fast to answer.
 
 ![Image showing ubidots automation](Ubidots/automation.png)
 _Figure 8.3 that shows Ubidots automation_
@@ -265,7 +265,7 @@ _Figure 8.3 that shows Ubidots automation_
 ## Finalizing the design
 This project was a fun experience. My main goals was to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or similar to communicate with the device and both received and send data. I have learned both more electrical and circuitry as well as some new communication protocols such as MQTT. Further down is a GIF and a video showing the final results.
 
-I would also like to mention that this project and the majority of the course have been done while in vacation. So the project ideas haven't had enough time to be fully developed. Some to do is:
+I would also like to mention that this project and the majority of the course have been done while on vacation. So the project ideas haven't had enough time to be fully developed. Some to do is:
 
 * Battery powering
 * Option to set answer options, not only Yes or No
