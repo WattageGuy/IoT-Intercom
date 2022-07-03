@@ -147,7 +147,7 @@ def do_connect():
         LCD.puts("Connecting to") # Shows connection on LCD
         LCD.puts("WiFi...", 0, 1)
         # Connect with your WiFi Credential
-        wlan.connect('Alexanders iPhone', auth=(WLAN.WPA2, 'ostkaka1'))
+        wlan.connect('Your SSID', auth=(WLAN.WPA2, 'Your Passowrd'))
         # Check if it is connected otherwise wait
         while not wlan.isconnected():
             pass
