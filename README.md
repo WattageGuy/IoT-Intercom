@@ -1,9 +1,9 @@
 # Tutorial on how to build an IoT-Intercom
-## Short Overview
-This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at LNU Sweden. My name is Alexander Ström (as227nn) and following is a tutorial on how to build your own!
+## Brief Overview
+This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at LNU Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [here](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/)
 
-## What is this? And how does it work?
-This device receives a message sent by a Node-RED dashboard, Node-RED is a flow based programming environment which handles all the traffic from and to the device as well as the cloud solution chosen in this project. When a message is sent, it will be shown on the IoT-Intercom as well as an LED light and buzzer sound. The person who has the device will be able to choose an answer that will be sent back to Node-RED. Node-RED will only store the current question, answer and time to answer while Ubidots will be used to store all messages, also giving an average value of answer time. This tutorial will explain how to set up all this.
+## How does it work?
+This device receives a message sent by a Node-RED dashboard, Node-RED will handle all the traffic from and to the device as well as the cloud solution chosen in this project. When a message is sent, it will be shown on the IoT-Intercom as well as an LED light and buzzer sound. The person who has the device will be able to choose an answer that will be sent back to Node-RED. Node-RED will only store the current question, answer and time to answer while Ubidots will be used to store all messages, also giving an average value of answer time. This tutorial will explain how to set up all this.
 
 ![Communication Architecture](communication-architecture.svg)
 </br>_Figure showing the communication architecture/network functionalities_
@@ -11,10 +11,10 @@ This device receives a message sent by a Node-RED dashboard, Node-RED is a flow 
 
 **How much time it might take to do (approximation):**
 
-Considering everything working as expected without any unmentioned problems with solutions this project might take 2 days, or approximation 15-20 hours to complete.
+Considering everything working as expected without any unmentioned problems with solutions this project might take 2 days, or approximation 15-20 hours to complete. It also depends on knowledge. Basic programing and circuitary knowledge will help!
 
-## Origin
-### Project idea and purpose:
+## Objective
+### Project idea and purpose
 This project idea started from an earlier software solution called "Matroparen" (Enligsh: Food announcements), that acted as a way to tell everybody at home that the food was to be served. This was pretty simple and built upon webhooks messaging devices. But now it wanted something more complex and connected to the IoT spectrum with some hardware and circuitry involved. The way this device is built also makes it possible to collect data such of how long it takes for the person to answer the question.
 
 ### Insights
@@ -58,13 +58,13 @@ You should end up with a bread board looking something like this below:
 For those of you that want to use something else or design a PCB here is the schematic:
 </br>![Schematic fritzing](fritzing/schematic.png)
 
-Referring to the bread board image you can connect the component in which order you want. But I would recommend connecting LED first, and even connecting a battery source to understand how LED, current, and resistors are working. If you are using another LED and do not feel confident about reading resistor cheat you can use [this](https://circuitdigest.com/calculators/led-resistor-calculator) website.
+Referring to the bread board image you can connect the component in which order you want. But I would recommend connecting LED first, and even connecting a battery source to understand how LED, current, and resistors are working. If you are using another LED and do not feel confident about reading resistor cheat you can use [this](https://circuitdigest.com/calculators/led-resistor-calculator) website. But if your development board do not come with the pins soldered on you will have to do that yourself. A recommendation is to use a bread board when soldering to make sure the pins is as straight as possible.
 
-Now I recommend connecting both buttons accordingly to the bread board image. The resistor that is being used acts as a pull-down resistor which guarantees correct value from button.
+I then recommend connecting both buttons accordingly to the bread board image. The resistor that is being used acts as a pull-down resistor which guarantees correct value from button.
 
 The last component on the bread board is the buzzer that is connected with PWM and ground. PWM is a pulse-width modulation that makes it able to make different sounds from the buzzer.
 
-Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I/O Expander for I2C Bus soldered on you only need to connect the SDA, SCL, ground and VCC (live 5v<).
+Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I/O Expander for I2C Bus soldered on you only need to connect the SDA, SCL, ground and VCC (5v).
 
 ### Power Comsuption
 Down below is a table that shows power consumption. Power consuptions values for Heltec was hard to find so generic ESP32 values is used.
@@ -77,13 +77,13 @@ Down below is a table that shows power consumption. Power consuptions values for
 | LED 5mm                     | often 20mA but can<br>take up to 30mA                                                                                                                                |
 | Total (USB Power 5v)                      | ~400mA/0.4W                                                                                                                                                          |
 
-## Platorm
-For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform but most have the local Node-RED solution. Node-RED is handling all communication to and from the device while the cloud save all questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
+## Platform
+For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform but most have the local Node-RED solution. Node-RED is a flow based programming environment handling all communication to and from the device while the cloud saves **all** questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
 
 Node-RED was choosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and thats why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST Api that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
 
 ## The code
-Following describes core functionalities in the micropython code. But before we star some libraries is needed. All this is available for download in this github repositories lib folder in root, so make sure you upload them to your development board as well.
+Following describes core functionalities in the micropython code. But before we star some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well.
 
 ### WiFi connection
 In order for the device to work properly some kind of network solution is required and in this project WiFi has been chosen. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
@@ -219,7 +219,7 @@ allow_anonymous true
 Then you can start mosquitto on Mac with command: ```mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf```. And on Windows you can use ```net start mosquitto``` when in correct folder path.
 
 ## Node-RED
-When MQTT is working you should setup the Node-RED environment. Node-RED makes it easy to import a flow from a JSON. When you have installed Node-RED (recommended ways is Docker or Home Assistant) you can click the tree lines in the right corner and then choose to import a file. Use the file located in this repo folder called Node-RED. When imported successfully it should look something like this:
+When MQTT is working you should setup the Node-RED environment. Node-RED makes it easy to import a flow from a JSON. When you have installed Node-RED (recommended ways is [Docker](https://hub.docker.com/r/nodered/node-red) or Home Assistant) you can click the tree lines in the right corner and then choose to import a file. Use JSON ```flow.json``` file located in this repo folder called Node-RED. When imported successfully it should look something like this:
 
 ![Node-RED](Node-RED/overview.png)
 
@@ -231,6 +231,9 @@ When Node-RED is upp and running and you see a contented status under MQTT nodes
 ![Node-RED dashboard](Node-RED/dashboard.png)
 
 Try sending some data and it should arrive on the device as well as giving you a notification in the right corner if message is received successfully. When a answer is made it should also show up as a notification and fill the blank info in the intercom dashboard.
+
+### Conclusion
+WiFi was chosen for the easy of use for new customers if this idea whoud been in production. WiFi could be found in almost everbodys home at this era. That way the user only need to tell the device their WiFi credentials and the device will be able to comunicate around the world. LoRa whould have needed much more configuration when location is changed. And MQTT have been chosen just because its a lightweight protocol and wont use that much bandwith in the local network. The header consist of 2 bytes and the payload can be up to 265MB. Ubidots which uses a REST Api makes it simple to exchange data bacause the connection is descibed in a URL and dont need that much paramters other than a Token and ID. Which will make it easy to distrubute this Node-RED configuration without the user being needed to know that much about Node-RED.
 
 ## Ubidots - Presenting the data
 If you would like to collect all question answers and answer time as well as generating a average answer time metric you should consider using the Ubidots solution, this will generate a dashboard as the one shown below.
@@ -244,6 +247,12 @@ First of all you will have to set up a Ubidots account. Then you should add a bl
 
 ![Ubidots ID](Ubidots/id.png)
 </br>_Figure that shows where to find varibel id_
+
+### Automation
+Ubidots have the funcationaly of making automation and triggers. At this moment only one automation exists as shown in image below. The automation sends a congratulations SMS when the user answered or at lest stop the message within 10 seconds. This way the user can collect points for being fast to answer.
+
+![Image showing ubidots automation](Ubidots/automation.png)
+_Figure that shows Ubidots automation_
 
 ## Finalizing the design
 This project was a fun experience. My main goals was to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or similar to communicate with the device and both received and send data. Ive learned both more electrical and circuitary as well as some new communication protocols such as MQTT. Further down is a gif and a video showing the final results.
