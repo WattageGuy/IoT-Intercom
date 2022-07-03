@@ -230,3 +230,6 @@ First of all you will have to set up a Ubidots account. Then you should add a bl
 
 ![Ubidots ID](Ubidots/id.png)
 </br>_Figure that shows where to find varibel id_
+
+![Video Preview](video-preview.mov)
+</br>_Video that shows the device in action_
