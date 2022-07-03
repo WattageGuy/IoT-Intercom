@@ -231,5 +231,7 @@ First of all you will have to set up a Ubidots account. Then you should add a bl
 ![Ubidots ID](Ubidots/id.png)
 </br>_Figure that shows where to find varibel id_
 
-![Video Preview](video-preview.mov)
+![Video Preview](video/video-preview.gif)
 </br>_Video that shows the device in action_
+
+For video with audio: [https://vimeo.com/726465080](https://vimeo.com/726465080)
