@@ -60,6 +60,8 @@ For those of you that want to use something else or design a PCB here is the sch
 </br>![Schematic fritzing](fritzing/schematic.png)
 _Figure 4.2 showing the schematic for the device_
 
+OBS! Use 3.3v or 5v for the right components (follow schematic/breadboard image)!
+
 Referring to the bread board image you can connect the component in which order you want. But I would recommend connecting LED first, and even connecting a battery source to understand how LED, current, and resistors are working. If you are using another LED and do not feel confident about reading resistor cheat you can use [this](https://circuitdigest.com/calculators/led-resistor-calculator) website. If your development board do not come with the pins soldered on you will have to do that yourself. A recommendation is to use a bread board when soldering to make sure the pins is as straight as possible.
 
 I then recommend connecting both buttons accordingly to the bread board image. The resistor that is being used acts as a pull-down resistor which guarantees correct values from button.
