@@ -272,7 +272,7 @@ I would also like to mention that this project and the majority of the course ha
 * 3D printed case
 * Speaker
 
-If you would like to contribute to this project your welcome to make an issue or contact me!
+If you would like to contribute to this project your welcome to make a pull requests or contact me!
 
 ![GIF Preview](video/video-preview.gif)
 </br>GIF that shows the device in action_
