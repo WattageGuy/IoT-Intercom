@@ -69,7 +69,7 @@ The last component on the bread board is the buzzer that is connected with PWM a
 Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I2C Bus interface soldered on you only need to connect the SDA, SCL, ground and VCC (5v).
 
 ### Power Comsuption
-Down below is a table that shows power consumption. Power consuptions values for Heltec was hard to find so generic ESP32 values is used.
+Down below is a table that shows power consumption. Power consumption values for Heltec was hard to find so generic ESP32 values is used.
 
 | Component                   | Power Consumption                                                                                                                                                    |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
