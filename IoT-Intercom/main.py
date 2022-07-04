@@ -94,10 +94,6 @@ CS8 = 4435
 D8  = 4699
 DS8 = 4978
 
-#Ubidots parameters
-TOKEN = "BBFF-LwiBN7PEtuVeff845ydzn7BBDBbrp0" #Put here your TOKEN
-VARIABLE_ID = "62becadff7fcb7648b68639b"  # Assign the variable label desire to be send
-
 # set up pin PWM timer for output to buzzer or speaker
 buz = Pin("P8")
 tim = PWM(0, frequency=300)
