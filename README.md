@@ -15,13 +15,13 @@ Considering everything working as expected without any unmentioned problems with
 
 ## Objective
 ### Project idea and purpose
-This project idea started from an earlier software solution called "Matroparen" (Enligsh: Food announcements), that acted as a way to tell everybody at home that the food was to be served. This was pretty simple and built upon webhooks messaging devices. But now I wanted something more complex and connected to the IoT spectrum with some hardware/circuitry involved. The way this device is built also makes it possible to collect data such of how long it takes for the person to answer the question.
+This project idea started from an earlier software solution called "Matroparen" (Enligsh: Food announcements), that acted as a way to tell everybody at home that the food was to be served. This was simple and built upon webhooks messaging devices. But now I wanted something more complex and connected to the IoT spectrum with some hardware/circuitry involved. The way this device is built also makes it possible to collect data such of how long it takes for the person to answer the question.
 
 ### Insights
 Completing this project will give a brief understanding of the IoT world as well as some basic circuitry, cloud solutions and programming (mainly python). You will also get a brief understanding on some communication protocols and solutions used in it for example: MQTT and HTTP Requests
 
 # Materials
-To bee able to follow this tutorial please gather microcontroller, sensors etc with same specifications as described bellow. I've already gathered all those components from different kits at different times, but you can buy them from the links below:
+To be able to follow this tutorial please gather microcontroller, sensors etc with same specifications as described below. I've already gathered all those components from different kits at different times, but you can buy them from the links below:
 
 | Component            | Purpose & Description                                                                                                                                                                                                                                     | Can be bought at (Sweden):                                                                                                                                                                                                                                                                                                               | Price (approximately) |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
@@ -37,9 +37,9 @@ To bee able to follow this tutorial please gather microcontroller, sensors etc w
 **Total: 700kr**
 
 ## Computer setup
-To be able to program the device an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/.
+To be able to program the device, an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/.
 
-Before we can program the device we need to flash it with its correct firmware, so connect the device with a micro USB cable to your computer. And if your on Windows you will need to install the driver first [here](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip) One way of flashing the device is to visit the website: https://nabucasa.github.io/esp-web-flasher/. In the top right corner is a connect button, but before pressing this you will need to set the baud which is 460800 for both the Heltec and a generic ESP32. After clicking connect you choose the serial port from the popup. The terminal will let you know if connected, if so please erase the device. Then you choose to upload file in the first offset, [here is the file for Heltec](https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true) and [here is the file for ESP32](https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin). When all done and successfully flashed we can continue on in Atom.
+Before we can program the device we need to flash it with its correct firmware, so connect the device with a micro USB cable to your computer. And if you are on Windows you will need to install the driver first [here](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip) One way of flashing the device is to visit the website: https://nabucasa.github.io/esp-web-flasher/. In the top right corner is a connect button, but before pressing this you will need to set the baud which is 460800 for both the Heltec and a generic ESP32. After clicking connect you choose the serial port from the popup. The terminal will let you know if connected, if so, please erase the device. Then you choose to upload file in the first offset, [here is the file for Heltec](https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true) and [here is the file for ESP32](https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin). When all done and successfully flashed, we can continue on in Atom.
 
 ![ESP Web flasher](https://i.imgur.com/XJMJpk1.png)
 </br>_Figure 3.1 image that shows ESP Web Flasher website with baud and connect_
@@ -48,10 +48,10 @@ Before we can program the device we need to flash it with its correct firmware, 
 </br>_Figure 3.1 image that shows ESP Web Flasher website with erase and upload_
 
 Before connecting to the device its recommended to turn off Safe-Boot in Atom global settings. After this you will be able to connect to the device from the
-COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like ```/dev/tty.usbserial-0001```. Set this under the device adress (list) option in Atom global settings. Now you should bee able to successfully connect to the serial communication in Atoms terminal (click Connect Device). To upload and download code from and to device press buttons beside terminal window in Atom.
+COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like ```/dev/tty.usbserial-0001```. Set this under the device adress (list) option in Atom global settings. Now you should be able to successfully connect to the serial communication in Atoms terminal (click Connect Device). To upload and download code from and to device press buttons beside terminal window in Atom.
 
 ## Circuit Diagram - Putting everything together
-When Atom is up and running and your successfully able to communicate with the development board its time to make all the circuitry. For this tutorial a bread board is used as described earlier.
+When Atom is up and running and your successfully able to communicate with the development board it is time to make all the circuitry. For this tutorial a bread board is used as described earlier.
 You should end up with a bread board looking something like this below:
 </br>![Bread board fritzing](fritzing/breadboard.png)
 _Figure 4.1 showing Bread Board from fritzing_
@@ -68,9 +68,9 @@ I then recommend connecting both buttons accordingly to the bread board image. T
 
 The last component on the bread board is the buzzer that is connected with PWM and ground. PWM is a pulse-width modulation that makes it able to make different sounds from the buzzer.
 
-Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased a LCD with the I2C Bus interface soldered on you only need to connect the SDA, SCL, ground and VCC (5v).
+Lastly you need to connect the LCD accordingly to the bread board image or schematic. If you purchased an LCD with the I2C Bus interface soldered on you only need to connect the SDA, SCL, ground and VCC (5v).
 
-### Power Comsuption
+### Power Consumption
 Down below is a table that shows power consumption. Power consumption values for Heltec was hard to find so generic ESP32 values is used.
 
 | Component                   | Power Consumption                                                                                                                                                    |
@@ -82,15 +82,15 @@ Down below is a table that shows power consumption. Power consumption values for
 | Total (USB Power 5v)                      | ~400mA/0.4W                                                                                                                                                          |
 
 ## Platform
-For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform but most have the local Node-RED solution. Node-RED is a flow based programming environment handling all communication to and from the device while the cloud saves **all** questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
+For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform, but most have the local Node-RED solution. Node-RED is a flow based programming environment handling all communication to and from the device while the cloud saves **all** questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
 
-Node-RED was chosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and thats why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST Api that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
+Node-RED was chosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and that is why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST API that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
 
 ## The code
 Following describes core functionalities in the micropython code. But before we start some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well. [All code](https://github.com/WattageGuy/IoT-Intercom/tree/main/IoT-Intercom) including [main.py](https://github.com/WattageGuy/IoT-Intercom/blob/main/IoT-Intercom/main.py) can be found in "IoT-Intercom" folder in this repo.
 
 ### WiFi connection
-In order for the device to work properly some kind of network solution is required and in this project WiFi has been chosen. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
+In order for the device to work properly some kind of network solution is required and in this project, WiFi has been chosen. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
 Code below connects to WiFi with provided credentials and applies this connection to the device.
 
 ```
@@ -117,7 +117,7 @@ When all the above is successfully executed and the WiFi has been established th
 enform the user of the IoT-Intercom and later turn off the screen to save power (this code is not shown in code snippet above).
 
 ### MQTT
-When the device has established a working WiFi connection and the screen is turned off its constantly checking for a MQTT topic. MQTT is pub-sub communication which means that some publishers can publish data to a certaint topic that is handled by a MQTT broker that later can be seen by all subscribers. This IoT-Intercom will act as booth subscriber and publisher. Firstly it acts as a subscriber to check for a message to the device which is being sent from Node-RED. To choose what topic to look for is set with parameters below. In this project a topic called notification will be used.
+When the device has established a working WiFi connection and the screen is turned off its constantly checking for a MQTT topic. MQTT is pub-sub communication which means that some publishers can publish data to a certain topic that is handled by a MQTT broker that later can be seen by all subscribers. This IoT-Intercom will act as booth subscriber and publisher. Firstly, it acts as a subscriber to check for a message to the device which is being sent from Node-RED. To choose what topic to look for is set with parameters below. In this project a topic called notification will be used.
 
 ```
 # MQTT parameters
@@ -135,7 +135,7 @@ mqttc.subscribe(notification) # Topic for MQTT subscription
 
 It then uses these parameters in the function ```mqttc.check_msg()```. to check for messages in that topic.
 
-And when data in the chosen topic is recognized it will start the callback function which in this case is called _notification_check_. The code inside this function is shown below. And what it does is to decode the message and split it in strings of maximum 16 characters, this is because the LCD (16x2) only will show 16 characters per row. This function also makes sure that there is valid content in the MQTT message (not empty).
+And when data in the chosen topic is recognized, it will start the callback function which in this case is called _notification_check_. The code inside this function is shown below. And what it does is to decode the message and split it in strings of maximum 16 characters, this is because the LCD (16x2) only will show 16 characters per row. This function also makes sure that there is valid content in the MQTT message (not empty).
 
 ```
 def notification_check(topic, msg, third, fourth): #Checks MQTT message
@@ -147,9 +147,9 @@ def notification_check(topic, msg, third, fourth): #Checks MQTT message
 ```
 
 ### User input
-When the MQTT function detected valid content it is time to show this content on the screen while also making some buzzer noise and lightning the LED. All this is done in the function called _ask_input_. But to make this work you will need to ensure that all pins have been successfully defined. This can be found almost at the top of the main.py. Here you set the pins for the LED, Buttons, I2C etc. The preconfigured parameters is made for a Heltec device so if you are using any other ESP32 based board check that all pins is correct and would work with the required communication or use case. You will need SDA, SCL for the I2C communication and buttons only needs GPI while the LED needs GPIO (output). And the buzzer needs PWM support but it is supported by the majority of ESP32 board Pins.
+When the MQTT function detected valid content, it is time to show this content on the screen while also making some buzzer noise and lightning the LED. All this is done in the function called _ask_input_. But to make this work you will need to ensure that all pins have been successfully defined. This can be found almost at the top of the main.py. Here you set the pins for the LED, Buttons, I2C etc. The preconfigured parameters is made for a Heltec device so if you are using any other ESP32 based board check that all pins is correct and would work with the required communication or use case. You will need SDA, SCL for the I2C communication and buttons only needs GPI while the LED needs GPIO (output). And the buzzer needs PWM support, but it is supported by the majority of ESP32 board Pins.
 
-What happens in the code below is that a text string is sent to the LCD containing the message. The first row on the LCD is the string with index 0 and the second row is index 1 that was generated earlier. This make sure that all available space on the LCD is used to display the message. But if a question is longer than 32 characters it wont bee able to see all the text on the LCD. Lastly it also alerts Node-RED that the message has arrived to the device.
+What happens in the code below is that a text string is sent to the LCD containing the message. The first row on the LCD is the string with index 0 and the second row is index 1 that was generated earlier. This make sure that all available space on the LCD is used to display the message. But if a question is longer than 32 characters it would not be able to show all the text on the LCD. Lastly it also alerts Node-RED that the message has arrived at the device.
 
 ```
 while printed == False:
@@ -167,7 +167,7 @@ while printed == False:
         mqttc.publish( "printed", "Received by device" )
 ```
 
-The code below is what turns on the LED and make the buzzer sound. Only one syntax is needed to turn on the LED as shown in the first row in code below. The code in the for loop is what plays all buzzer tones, in this case _msg_ is played which is defined earlier in the code, this contains all the frequencies thats going to be sent to the buzzer.
+The code below is what turns on the LED and make the buzzer sound. Only one syntax is needed to turn on the LED as shown in the first row in code below. The code in the for loop is what plays all buzzer tones, in this case _msg_ is played which is defined earlier in the code, this contains all the frequencies that is going to be sent to the buzzer.
 
 ```
 ledPin.value(1) # Turns LED on
@@ -212,7 +212,7 @@ if redButton.value() == 1: # If red button is pressed
 
 ## Transmitting the data / connectivity
 ### MQTT
-As told earlier the IoT-Intercom sends all data with MQTT topics when a button is pressed. But in order for this to work you will need a MQTT broker, the one used in this project is called mosquitto. This can be installed on Mac with homebrew command: ```brew install mosquitto```. And on Windows you can download mosquitto [here](https://mosquitto.org/files/binary/win64/mosquitto-2.0.14-install-windows-x64.exe).
+As told earlier the IoT-Intercom sends all data with MQTT topics when a button is pressed. But for this to work you will need a MQTT broker, the one used in this project is called mosquitto. This can be installed on Mac with homebrew command: ```brew install mosquitto```. And on Windows you can download mosquitto [here](https://mosquitto.org/files/binary/win64/mosquitto-2.0.14-install-windows-x64.exe).
 
 On mac add the following at the bottom of the file ```/opt/homebrew/etc/mosquitto/mosquitto.conf```:
 ```
@@ -240,7 +240,7 @@ When Node-RED is upp and running and you see a contented status under MQTT nodes
 Try sending some data and it should arrive on the device as well as giving you a notification in the right corner if message is received successfully. When an answer is made it should also show up as a notification and fill the blank info in the intercom dashboard.
 
 ### Conclusion
-WiFi was chosen for the easy of use for new customers if this idea would go into production. WiFi could be found in almost everybody home in this era. That way the user only need to tell the device what WiFi credentials to use and the device will be able to communicate around the world. LoRa would have needed much more configuration when location is changed. And MQTT have been chosen just because it is a lightweight protocol and will not use that much bandwidth in the local network. The header consists of 2 bytes and the payload can be up to 265MB max. Ubidots which uses a REST API makes it simple to exchange data because the connection is described in a URL and don't need that much parameters other than a Token and ID. Which will make it easy to distribute this Node-RED configuration without the user being needed to know that much about Node-RED.
+WiFi was chosen for the ease of use for new customers if this idea would go into production. WiFi could be found in almost everybody home in this era. That way the user only needs to tell the device what WiFi credentials to use and the device will be able to communicate around the world. LoRa would have needed much more configuration when location is changed. And MQTT have been chosen just because it is a lightweight protocol and will not use that much bandwidth in the local network. The header consists of 2 bytes and the payload can be up to 265MB max. Ubidots which uses a REST API makes it simple to exchange data because the connection is described in a URL and don't need that many parameters other than a Token and ID. Which will make it easy to distribute this Node-RED configuration without the user being needed to know that much about Node-RED.
 
 ## Ubidots - Presenting the data
 If you would like to collect all questions, answer and answer time as well as generating an average answer time you should consider using the Ubidots solution, this can generate a dashboard as the one shown below. This means that all data from and to the device will be saved in Ubidots database.
@@ -251,28 +251,28 @@ _Figure 8.1 showing Ubidots dashboard_
 Visit [demo](https://stem.ubidots.com/app/dashboards/public/dashboard/LZ-PLgHjEOeZQa3TXqeL7Tp_d929xqBDxMsQhk7SXw8)
 
 ### Setup
-First of all you will have to set up a Ubidots account. Then you should add a blank device. Inside this device you can setup different variables, create one and copy the ID (as in figure below). This ID and the Ubidots Token (found in API Credentials) is needed in the Node-RED node called "Setup Requests" edit those parameters and click deploy the Node-RED flow in the top right corner in the Node-RED environment. Now you should also see your messages in the Ubidots platform, but you will have to setup your own Ubidots dashboard.
+First of all, you will have to set up a Ubidots account. Then you should add a blank device. Inside this device you can setup different variables, create one and copy the ID (as in figure below). This ID and the Ubidots Token (found in API Credentials) is needed in the Node-RED node called "Setup Requests" edit those parameters and click deploy the Node-RED flow in the top right corner in the Node-RED environment. Now you should also see your messages in the Ubidots platform, but you will have to setup your own Ubidots dashboard.
 
 ![Ubidots ID](Ubidots/id.png)
-</br>_Figure 8.2 that shows where to find varibel id_
+</br>_Figure 8.2 that shows where to find variable id_
 
 ### Automation
-Ubidots have the functionality of making automation and triggers. At this moment only one automation exists as shown in the image below. The automation sends a congratulations SMS when the user answered or at least stoped the message within 10 seconds. This way the user can collect points for being fast to answer.
+Ubidots have the functionality of making automation and triggers. At this moment only one automation exists as shown in the image below. The automation sends a congratulations SMS when the user answered or at least stopped the message within 10 seconds. This way the user can collect points for being fast to answer.
 
 ![Image showing ubidots automation](Ubidots/automation.png)
 _Figure 8.3 that shows Ubidots automation_
 
 ## Finalizing the design
-This project was a fun experience. My main goals was to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or similar to communicate with the device and both received and send data. I have learned both more electrical and circuitry as well as some new communication protocols such as MQTT. Further down is a GIF and a video showing the final results.
+This project was a fun experience. My main goals were to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or like communicate with the device and both received and send data. I have learned both more electrical and circuitry as well as some new communication protocols such as MQTT. Further down is a GIF and a video showing the results.
 
-I would also like to mention that this project and the majority of the course have been done while on vacation. So the project ideas haven't had enough time to be fully developed. Some to do is:
+I would also like to mention that this project and the most of the course have been done while on vacation. So, the project ideas haven't had enough time to be fully developed. Some to do is:
 
 * Battery powering
 * Option to set answer options, not only Yes or No
 * 3D printed case
 * Speaker
 
-If you would like to contribute to this project your welcome to make a pull requests or contact me!
+If you would like to contribute to this project your welcome to make a pull request or contact me!
 
 ![GIF Preview](video/video-preview.gif)
 </br>_GIF that shows the device in action_
