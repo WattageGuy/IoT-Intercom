@@ -265,7 +265,7 @@ _Figure 8.3 that shows Ubidots automation_
 ## Finalizing the design
 This project was a fun experience. My main goals were to learn how to interact with software from hardware, an example is how pressing the buttons would trigger a software function cause the GPI detects voltage. It was also a fun experience making the communication architecture, how I could use a dashboard on any mobile platform or like communicate with the device and both received and send data. I have learned both more electrical and circuitry as well as some new communication protocols such as MQTT. Further down is a GIF and a video showing the results.
 
-I would also like to mention that this project and the most of the course have been done while on vacation. So, the project ideas haven't had enough time to be fully developed. Some to do is:
+I would also like to mention that this project and the most of the course have been done while on vacation. So, the project ideas have no had enough time to be fully developed. Some to do is:
 
 * Battery powering
 * Option to set answer options, not only Yes or No
