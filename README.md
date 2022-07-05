@@ -87,7 +87,7 @@ For this project both a local and cloud solution has been applied. This IoT-Inte
 Node-RED was chosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and thats why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST Api that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
 
 ## The code
-Following describes core functionalities in the micropython code. But before we start some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well.
+Following describes core functionalities in the micropython code. But before we start some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well. [All code](https://github.com/WattageGuy/IoT-Intercom/tree/main/IoT-Intercom) including [main.py](https://github.com/WattageGuy/IoT-Intercom/blob/main/IoT-Intercom/main.py) can be found in "IoT-Intercom" folder in this repo.
 
 ### WiFi connection
 In order for the device to work properly some kind of network solution is required and in this project WiFi has been chosen. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
