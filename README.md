@@ -42,13 +42,13 @@ To be able to program the device an IDE is needed, which is a coding environment
 Before we can program the device we need to flash it with its correct firmware, so connect the device with a micro USB cable to your computer. And if your on Windows you will need to install the driver first [here](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip) One way of flashing the device is to visit the website: https://nabucasa.github.io/esp-web-flasher/. In the top right corner is a connect button, but before pressing this you will need to set the baud which is 460800 for both the Heltec and a generic ESP32. After clicking connect you choose the serial port from the popup. The terminal will let you know if connected, if so please erase the device. Then you choose to upload file in the first offset, [here is the file for Heltec](https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true) and [here is the file for ESP32](https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin). When all done and successfully flashed we can continue on in Atom.
 
 ![ESP Web flasher](https://i.imgur.com/XJMJpk1.png)
-</br>_Figure 3.1 image that choose ESP Web Flasher website with baud and connect_
+</br>_Figure 3.1 image that shows ESP Web Flasher website with baud and connect_
 
 ![ESP Web flasher](https://i.imgur.com/V93LNZp.png)
-</br>_Figure 3.1 image that choose ESP Web Flasher website with erase and upload_
+</br>_Figure 3.1 image that shows ESP Web Flasher website with erase and upload_
 
 Before connecting to the device its recommended to turn off Safe-Boot in Atom global settings. After this you will be able to connect to the device from the
-COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like ```/dev/tty.usbserial-0001```. Set this under the device adress (list) option in Atom global settings. Now you should bee able to successfully connect to the serial communication in Atoms terminal (click Connect Device).
+COM3 interface on Windows. On mac you will need to find the device adress, this can be done with terminal command: ```ls /dev/```, it should look something like ```/dev/tty.usbserial-0001```. Set this under the device adress (list) option in Atom global settings. Now you should bee able to successfully connect to the serial communication in Atoms terminal (click Connect Device). To upload and download code from and to device press buttons beside terminal window in Atom.
 
 ## Circuit Diagram - Putting everything together
 When Atom is up and running and your successfully able to communicate with the development board its time to make all the circuitry. For this tutorial a bread board is used as described earlier.
@@ -212,7 +212,7 @@ if redButton.value() == 1: # If red button is pressed
 
 ## Transmitting the data / connectivity
 ### MQTT
-As told earlier the IoT-Intercom sends all data with MQTT topics. But in order for this to work you will need a MQTT broker, the one used in this project is called mosquitto. This can be installed on Mac with homebrew command: ```brew install mosquitto```. And on Windows you can download mosquitto [here](https://mosquitto.org/files/binary/win64/mosquitto-2.0.14-install-windows-x64.exe).
+As told earlier the IoT-Intercom sends all data with MQTT topics when a button is pressed. But in order for this to work you will need a MQTT broker, the one used in this project is called mosquitto. This can be installed on Mac with homebrew command: ```brew install mosquitto```. And on Windows you can download mosquitto [here](https://mosquitto.org/files/binary/win64/mosquitto-2.0.14-install-windows-x64.exe).
 
 On mac add the following at the bottom of the file ```/opt/homebrew/etc/mosquitto/mosquitto.conf```:
 ```
@@ -243,7 +243,7 @@ Try sending some data and it should arrive on the device as well as giving you a
 WiFi was chosen for the easy of use for new customers if this idea would go into production. WiFi could be found in almost everybody home in this era. That way the user only need to tell the device what WiFi credentials to use and the device will be able to communicate around the world. LoRa would have needed much more configuration when location is changed. And MQTT have been chosen just because it is a lightweight protocol and will not use that much bandwidth in the local network. The header consists of 2 bytes and the payload can be up to 265MB max. Ubidots which uses a REST API makes it simple to exchange data because the connection is described in a URL and don't need that much parameters other than a Token and ID. Which will make it easy to distribute this Node-RED configuration without the user being needed to know that much about Node-RED.
 
 ## Ubidots - Presenting the data
-If you would like to collect all questions, answer and answer time as well as generating an average answer time you should consider using the Ubidots solution, this can generate a dashboard as the one shown below.
+If you would like to collect all questions, answer and answer time as well as generating an average answer time you should consider using the Ubidots solution, this can generate a dashboard as the one shown below. This means that all data from and to the device will be saved in Ubidots database.
 
 ![Ubidots](Ubidots/dashboard.png)
 _Figure 8.1 showing Ubidots dashboard_
@@ -275,7 +275,7 @@ I would also like to mention that this project and the majority of the course ha
 If you would like to contribute to this project your welcome to make a pull requests or contact me!
 
 ![GIF Preview](video/video-preview.gif)
-</br>GIF that shows the device in action_
+</br>_GIF that shows the device in action_
 
 For video presentation with audio: [https://vimeo.com/726533375](https://vimeo.com/726533375)
 
