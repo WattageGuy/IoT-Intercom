@@ -53,7 +53,7 @@ To be able to follow this tutorial please gather microcontroller, sensors etc wi
 **Total: 700kr**
 
 ## Computer setup
-To be able to program the device, an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/. Atom was chosen because I knew about the IDE earlier and read that Atom was popular. When Atom is installed also consider downloading Nodejs as it may be required: [https://nodejs.org/en/](https://nodejs.org/en/).
+To be able to program the device, an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/. Atom was chosen because I knew about the IDE earlier and read that Atom was popular for python and micropython. When Atom is installed also consider downloading Nodejs as it may be required: [https://nodejs.org/en/](https://nodejs.org/en/).
 
 You will also need the Pymkr plugin in order to communicate with the device. Open Atom and go to ```Atom >> Preferences >> Install```, search for pymkr and install it.
 
