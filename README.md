@@ -241,7 +241,7 @@ allow_anonymous true
 Then you can start mosquitto on Mac with command: ```mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf```. And on Windows you can use ```net start mosquitto``` when in correct folder path.
 
 ## Node-RED
-When MQTT is working you should setup the Node-RED environment. Node-RED makes it easy to import a flow from a JSON. When you have installed Node-RED (recommended ways is [Docker](https://hub.docker.com/r/nodered/node-red) or Home Assistant) you can click the three lines in the top right corner and then choose to import a file. Use JSON ```flow.json``` file located in this repo folder called Node-RED. When imported successfully it should look something like this:
+When MQTT is working you should setup the Node-RED environment. Node-RED makes it easy to import a flow from a JSON. When you have installed Node-RED (recommended ways is [Docker](https://hub.docker.com/r/nodered/node-red) or Home Assistant) you can click the three lines in the top right corner and then choose to import a file. Use JSON [```flows.json```](https://github.com/WattageGuy/IoT-Intercom/blob/main/Node-RED/flows.json) file located in this repo folder called Node-RED. When imported successfully it should look something like this:
 
 ![Node-RED](Node-RED/overview.png)
 </br>_Figure 7.1 Node-RED flow overview_
@@ -250,7 +250,7 @@ You will have to change the server parameters to your mosquitto IP and port (if 
 </br>![Node-RED Server](Node-RED/change-server.png)
 </br>_Figure 7.2 Node-RED node Setup Request for changing server parameters_
 
-When Node-RED is upp and running and you see a contented status under MQTT nodes everything should work fine. Go to http://port:1880/ui/ to access the Node-RED dashboard where you send your message to the MQTT device. It should look like the picture below:
+When Node-RED is upp and running and you see a connected status under MQTT nodes everything should work fine. Go to http://port:1880/ui/ to access the Node-RED dashboard where you send your message to the MQTT device. It should look like the picture below:
 
 ![Node-RED dashboard](Node-RED/dashboard.png)
 </br>_Figure 7.3 showing Node-RED dashboard_
