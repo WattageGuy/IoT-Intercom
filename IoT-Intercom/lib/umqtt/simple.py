@@ -1,3 +1,7 @@
+'''
+    Author: Wojciech Banaś, Paul Sokolovsky, micropython-lib contributors
+    https://github.com/fizista/micropython-umqtt.simple2
+'''
 import usocket as socket
 import uselect
 from utime import ticks_add, ticks_ms, ticks_diff
