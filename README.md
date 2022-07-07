@@ -100,7 +100,7 @@ Down below is a table that shows power consumption. Power consumption values for
 | Total (USB Power 5v)                      | ~400mA/0.4W                                                                                                                                                          |
 
 ## Platform
-For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform, but most have the local Node-RED solution. Node-RED is a flow based programming environment handling all communication to and from the device while the cloud saves **all** questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
+For this project both a local and cloud solution has been applied. This IoT-Intercom will work without the cloud platform, but must have the local Node-RED solution. Node-RED is a flow based programming environment handling all communication to and from the device while the cloud saves **all** questions, answer etc (data) thats been sent, while Node-RED only stores the latest message.
 
 Node-RED was chosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and that is why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST API that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
 
