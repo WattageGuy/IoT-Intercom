@@ -1,6 +1,22 @@
 # Tutorial on how to build an IoT-Intercom
 ## Brief Overview
-This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at Linnaeus University (LNU) in Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [here](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/)
+This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at Linnaeus University (LNU) in Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [here](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/).
+
+<details open>
+<summary>GIF video example on device and functionality</summary>
+<br>
+If you do not understand how the device looks or works here is an example:
+![GIF Preview](video/video-preview.gif)
+<br><br>
+<pre>
+&lt;details open&gt;
+&lt;summary&gt;GIF video example on device and functionality&lt;&#47;summary&gt;
+&lt;br&gt;
+If you do not understand how the device looks or works here is an example:
+![GIF Preview](video/video-preview.gif)
+&lt;&#47;details&gt;
+</pre>
+</details>
 
 ## How does it work?
 This device receives a message sent by a Node-RED dashboard, Node-RED will handle all the traffic from and to the device as well as sending data to Ubidots, the cloud solution chosen in this project. When a message is sent it will be shown on the IoT-Intercom as well as an LED light and buzzer sound. The person who has the device will be able to choose an answer that will be sent back to Node-RED and the dashboard. Node-RED will only store the current question, answer and time to answer while Ubidots will be used to store all messages, also giving an average value of answer time. This tutorial will explain how to set up all this.
@@ -87,7 +103,7 @@ For this project both a local and cloud solution has been applied. This IoT-Inte
 Node-RED was chosen to make the device not cloud dependent so that communication will be available locally on the network. But Node-RED does not come with any database or such to store data and that is why Ubidots was chosen as cloud solution. And I choose Ubidots among all cloud solutions because it has a REST API that makes it easy for Node-RED to send JSON data to be stored in Ubidots.
 
 ## The code
-Following describes core functionalities in the micropython code. But before we start some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well. [All code](https://github.com/WattageGuy/IoT-Intercom/tree/main/IoT-Intercom) including [main.py](https://github.com/WattageGuy/IoT-Intercom/blob/main/IoT-Intercom/main.py) can be found in "IoT-Intercom" folder in this repo.
+Following describes core functionalities in the micropython code. But before we start some libraries is needed. All this is available for download in this GitHub repositories lib folder in root, so make sure you upload them to your development board as well. [All code](https://github.com/WattageGuy/IoT-Intercom/tree/main/IoT-Intercom) including [main.py](https://github.com/WattageGuy/IoT-Intercom/blob/main/IoT-Intercom/main.py) can be found in "[IoT-Intercom](https://github.com/WattageGuy/IoT-Intercom/tree/main/IoT-Intercom)" folder in this repo.
 
 ### WiFi connection
 In order for the device to work properly some kind of network solution is required and in this project, WiFi has been chosen. This makes the device easy to deploy at any area or home. All code that handles the network connection is defined in the function ```do_connect()```.
