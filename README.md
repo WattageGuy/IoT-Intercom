@@ -1,6 +1,6 @@
 # Tutorial on how to build an IoT-Intercom
 ## Brief Overview
-This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at Linnaeus University (LNU) in Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [here](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/).
+This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at Linnaeus University (LNU) in Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [Introduction to Applied Internet of Things, 7.5hp](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/).
 
 <details closed>
 <summary>GIF video example on device and functionality</summary>
