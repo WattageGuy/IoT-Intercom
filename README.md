@@ -2,20 +2,12 @@
 ## Brief Overview
 This IoT device makes it possible to receive a message sent from a mobile phone or other network device and then reply with button clicks. Following project is the result of an IoT course at Linnaeus University (LNU) in Sweden. My name is **Alexander Ström (as227nn)** and following is a tutorial on how to build your own! Read more about LNU course [here](https://lnu.se/kurs/tillampad-internet-of-things-introduktion/distans-internationell-engelska-sommar/).
 
-<details open>
+<details closed>
 <summary>GIF video example on device and functionality</summary>
 <br>
 If you do not understand how the device looks or works here is an example:
-![GIF Preview](video/video-preview.gif)
-<br><br>
-<pre>
-&lt;details open&gt;
-&lt;summary&gt;GIF video example on device and functionality&lt;&#47;summary&gt;
-&lt;br&gt;
-If you do not understand how the device looks or works here is an example:
-![GIF Preview](video/video-preview.gif)
-&lt;&#47;details&gt;
-</pre>
+<br>
+https://github.com/WattageGuy/IoT-Intercom/blob/main/video/video-preview.gif
 </details>
 
 ## How does it work?
@@ -24,6 +16,14 @@ This device receives a message sent by a Node-RED dashboard, Node-RED will handl
 ![Communication Architecture](communication-architecture.svg)
 </br>_Figure 1 showing the communication architecture/network functionalities_
 
+<details closed>
+<summary>GIF video example on device and functionality</summary>
+<br>
+If you do not understand how the device looks or works here is an example:
+<br>
+https://github.com/WattageGuy/IoT-Intercom/blob/main/video/video-preview.gif
+</details>
+<br>
 
 **How much time it might take to do (approximation):**
 
@@ -53,7 +53,9 @@ To be able to follow this tutorial please gather microcontroller, sensors etc wi
 **Total: 700kr**
 
 ## Computer setup
-To be able to program the device, an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/.
+To be able to program the device, an IDE is needed, which is a coding environment that handles all needed processes. For this tutorial Atom is used, therefore the first step is to download and setup Atom here: https://atom.io/. Atom was chosen because I knew about the IDE earlier and read that Atom was popular. When Atom is installed also consider downloading Nodejs as it may be required: [https://nodejs.org/en/](https://nodejs.org/en/).
+
+You will also need the Pymkr plugin in order to communicate with the deice. Open Atom and go to ```Atom >> Preferences >> Install```, search for pymkr and install it.
 
 Before we can program the device we need to flash it with its correct firmware, so connect the device with a micro USB cable to your computer. And if you are on Windows you will need to install the driver first [here](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip) One way of flashing the device is to visit the website: https://nabucasa.github.io/esp-web-flasher/. In the top right corner is a connect button, but before pressing this you will need to set the baud which is 460800 for both the Heltec and a generic ESP32. After clicking connect you choose the serial port from the popup. The terminal will let you know if connected, if so, please erase the device. Then you choose to upload file in the first offset, [here is the file for Heltec](https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true) and [here is the file for ESP32](https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin). When all done and successfully flashed, we can continue on in Atom.
 
